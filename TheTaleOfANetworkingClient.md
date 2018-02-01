@@ -129,3 +129,17 @@
 ^ You know what's worse? Even if your code compiled, you wouldn't be able to run tests because you swizzled! (objc runtime not available on  Linux
 
 ---
+
+# It's not _really_ Architecture, it's about decisions and complexity
+
+^ You could argue you could move these into separate objects and you'll still face most/some of these issues. Just look at the source code  of Alamofire's network activity indicator that can't subclass SessionManager and so, uses NSNotificationCenter to do the dirty work
+
+---
+
+![inline](Lattner.png)
+
+^ Let's face it, Network Clients have a non-trivial level of complexity. Alamofire tries to hide the complexity with a simple interface (that's why its so popular). With every need you have (images netactindicator), it ships a library that's supposed to Just Work™ (in mysterious ways).
+
+^ But eventually, the party stops and all those leaky abstractions pile up and fall down, leaving you with the mess to clean up.
+
+---

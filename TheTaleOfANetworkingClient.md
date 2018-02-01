@@ -92,18 +92,40 @@
 
 # Testing
 
-^ Now you're asked to write tests to prevent this from happening. How hard can it be? You 
+^ Now you're asked to write tests to prevent this from happening. How hard can it be? Turns out, writing tests for Alamofire is _HARD_. The only legit way to do it right now is swizzling UISession methods and stubbing in your own responses.
 
 ---
 
-now you add caching
+![inline](Mockinjay.png)
+
+^ That's how libraries like Mockinjay can claim being compatible with both Alamofire and AFNetworking
 
 ---
 
-now it's all complex. so many intertwined things happening in one single class
+![inline](Swizzle.png)
 
 ---
 
-Backend changes, they get frustrated, ask you to add your tests to their suite to ensure shit doesn't break. Your code now refers to an iOS specific caching lib, networkactivityindicator, and can't even run on linux
+![inline](Caching)
+
+^ now you're forced to ask add caching
+
+---
+
+# 🤕
+
+^ now it's all complex. so many intertwined things happening in one single class.
+
+---
+
+# Tests on Linux?
+
+^ How many people have issues where a backend changes under their feet, and now you're stuck!
+
+^ Backend changes, they get frustrated, ask you to add your tests to their suite to ensure shit doesn't break. 
+
+^ You look at your code all melancholy. Congratulations, your code won't even run on macOS, let alone Linux! There's network activity code, a possilby custom iOS caching library, if you're using AlamofireImage you're 2x screwed
+
+^ You know what's worse? Even if your code compiled, you wouldn't be able to run tests because you swizzled! (objc runtime not available on  Linux
 
 ---

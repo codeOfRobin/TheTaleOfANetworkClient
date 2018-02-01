@@ -45,6 +45,10 @@
 
 ---
 
+![inline](APIClient.png)
+
+---
+
 ![inline](Router.png)
 
 
@@ -106,7 +110,7 @@
 
 ---
 
-![inline](Caching)
+![inline](Caching.png)
 
 ^ now you're forced to ask add caching
 
@@ -130,6 +134,12 @@
 
 ---
 
+![inline autoplay loop](done.mp4)
+
+^ Rather than doing this, you realize it's a better idea to quit software engineering, migrate to Himachal Pradesh and chop wood for a living
+
+---
+
 # It's not _really_ Architecture, it's about decisions and complexity
 
 ^ You could argue you could move these into separate objects and you'll still face most/some of these issues. Just look at the source code  of Alamofire's network activity indicator that can't subclass SessionManager and so, uses NSNotificationCenter to do the dirty work
@@ -141,5 +151,104 @@
 ^ Let's face it, Network Clients have a non-trivial level of complexity. Alamofire tries to hide the complexity with a simple interface (that's why its so popular). With every need you have (images netactindicator), it ships a library that's supposed to Just Work™ (in mysterious ways).
 
 ^ But eventually, the party stops and all those leaky abstractions pile up and fall down, leaving you with the mess to clean up.
+
+---
+
+# A Better Way™
+
+---
+
+# Request Behaviours
+
+
+- Discovered this on Souroush Khanlou's blog[^1]
+- Make a protocol that wraps these underlying behaviours
+
+
+![inline](RequestBehaviour.png)
+
+^ don't forget to have empty implementations
+
+[^1]: http://khanlou.com/2017/01/request-behaviors/
+
+---
+
+![inline](CombinedRequestBehaviour.png)
+
+^ You can compose multiples of these!
+
+---
+
+![inline](TokenAuthBehaviour.png)
+
+---
+
+![inline](IndicatorRequestBehaviour.png)
+
+^ And so on (no notifications needed!)
+
+
+---
+
+![inline](NetworkingClient.png)
+
+^ Sadly, Alamofire doesn't let you access SessionManager's instance (see why it's a bad idea?)
+
+---
+
+![inline](BestNetworkingClient.png)
+
+---
+
+![inline](Github.png)
+
+^ Best part is, I'm working with the folks from hyper.no to add this to their awesome networking library, Malibu!
+
+---
+
+
+![inline](PRs.png)
+
+^ What about Linux compatiblity? It's a WIP, but should be possible with no major codebase changes!
+
+---
+
+![inline](RequestType1.png)
+
+^ What about all those cool features that libraries like Moya/Alamofire added/already had?
+
+---
+
+![inline](RequestType2.png)
+
+^ We support those too!
+
+---
+
+# If you're still not convinced
+
+
+^ I hope you're all convinced that ditching Alamofire is something worth doing. It promotes bad engineering amongst its users, handcuffs you in multiple ways, and at this point the only reason people use it is cos the first UX is easy to read.
+
+---
+
+![inline](Sundell.png)
+![inline](khanlou.png)
+![inline](objc.png)
+
+^ Indian people expert at 🐑chaal
+
+---
+
+![inline autoplay](kickstarter.mov)
+
+
+^ Because Alamofire is soo hard to test, large companies have to mock at 1 level higher in their networking level and do crazy shit like this, keeping 1 mock per API call returning objects rather than a saner system like fixtures. Kickstarter can do it cos they have millions of dollars and several iOS devs. Do you?
+
+---
+
+# Singleton based Architecture 🤮
+
+^ Yes you can make your own session manager, but most people don't do that
 
 ---

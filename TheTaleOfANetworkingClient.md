@@ -15,7 +15,9 @@
 
 ![inline](VCSkeleton.png)
 
-^ Soooo it's your first day at your job. You get to see what your app looks like. Project managers explain what it does, ideal personas you never understand. Designers show you amazing ideas and layouts that you'll never be able to make. You want to impress your coworkers with your cool new screens and so you get to work
+^ I hope everyone has heard of incidental vs accidental complexity.
+
+^ Soooo it's your first day at your job. You get to see what your app looks like. Project managers explain what it does, ideal personas you never understand. Designers show you amazing ideas and layouts that you'll never be able to make. You want to impress your coworkers with your cool new screens and so you get to work.
 
 ---
 
@@ -54,23 +56,43 @@
 
 (image for representational purposes)
 
-^ Awesome. Sooo now your API makes some changes. You have to send an auth token with every request. Later you find Alamofire has adapters to handle this problem better, and you use those. You have to manage state better cos there's a separate session manager object(tokens can change), but that's alright. Again, this is necessary complexity.
+^ Awesome. Sooo now your API makes some changes. You have to send an auth token with every request. Later you find Alamofire has adapters to handle this problem better, and you use those. You have to manage state better cos there's a separate session manager object(tokens can change), but that's alright. Again, this is inherent complexity, right?
 
 ---
 
-Add network activity indicator(even tho not on iPhone X)
+![inline](activityIndicatorExample.png)
+
+^ Onto your next feature where, surprise you're going to add a Network Activity Indicator. Sounds easy, right?
 
 ---
 
-Now, tragedy strikes: add logging for requests
+![inline](ActivityIndicator.png)
+
+^ So you do the simple obvious thing, and add a counter to your client. Increment and decrement in ALL your requests. Sounds logical right? You add a counter, increment, decrement. Inherent complexity, riiiight? 
 
 ---
 
-Now, tragedy strikes: add logging for responses
+![inline](AddLogging.png)
+
+^ Now, tragedy strikes: some requests start failing for some reason. Standard Backend Frontend tu-tu main main ensues. You're told to add logging to your networking client. You make a logging function and add it to every networking call in your app. Inherent complexity, right?
 
 ---
 
-Now you're asked to write tests to prevent this from happening
+![inline](URLCredential.png)
+
+^ Of course you later discover that this was a weird default setting in Alamofire, making you very, very sad.
+
+---
+
+![inline](AddResponseLogging.png)
+
+^ Now, tragedy strikes again: there's an actual bug on the server, and to help triage it, you're asked to add logging for responses. You grit your teeth and do what you've always done.
+
+---
+
+# Testing
+
+^ Now you're asked to write tests to prevent this from happening. How hard can it be? You 
 
 ---
 

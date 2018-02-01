@@ -252,3 +252,10 @@
 ^ Yes you can make your own session manager, but most people don't do that
 
 ---
+
+# Thanks folks!
+
+![inline autoplay](rantOver.mp4)
+
+
+@codeOfRobin

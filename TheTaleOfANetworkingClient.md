@@ -236,7 +236,7 @@
 ![inline](khanlou.png)
 ![inline](objc.png)
 
-^ Indian people expert at 🐑chaal
+^ And don't just listen to me, listen to all these people who don't use Alamofire in their blog posts!
 
 ---
 
